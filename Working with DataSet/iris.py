@@ -4,25 +4,30 @@ Created on Thu Jan  9 16:04:58 2020
 
 @author: Student
 """
-
+# -> this lib to access the file 
 import pandas as pd
+
+#
 import sklearn as skl
 
+# -> this lib is use to print the graph 
+import matplotlib.pyplot as plt
+
 name = ['sepal-length','speak-width','petal-length','petal-width','class']
-dataset  =  pd.read_csv('E:/python/ML/Working with DataSet/dataset/iris.data',names=name)
+dataset  =  pd.read_csv('E:/Machnie-Learning-master/Working with DataSet/dataset/iris.data',names=name)
 
 
 # shape will give the total number of rows and columns in that dataset
-dataset.shape
+data_shape = dataset.shape
 
 
 # head will give the number of columns to display 
 # syntax is DATASET_VARIABLE.head(NUMBER_OF_COLUMNS_TO_DISPLAY)
-dataset.head(10)
+data_head = dataset.head(10)
 
 
 # describe will give the complete decribation of that dataset
-dataset.describe()
+data_describe = dataset.describe()
 
 # -> OUTPUT 
 """
@@ -38,3 +43,26 @@ min        4.300000     2.000000      1.000000     0.100000
 max        7.900000     4.400000      6.900000     2.500000
 
 """
+
+
+#classfy the column in size
+data_groupby = dataset.groupby('class').size()
+
+# plot is to show the column in graph form 
+dataset.plot(kind='box' , subplots = True , layout = (2,2),sharex = False,sharey = False)
+plt.show()
+
+# this will show perticular column 
+dataset.boxplot('sepal-length')
+plt.show()
+
+# -> hist() will give the bar graph for dataset 
+dataset.hist()
+plt.show()
+
+# -> this will give the bar graph for perti
+dataset.hist('petal-length')
+plt.show()
+
+plt.scatter(dataset)
+plt.show()
